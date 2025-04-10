@@ -98,6 +98,14 @@ public class ContactosCovid {
 		
 	}
 
+	private void resetDatos(boolean reset){
+		if (reset) {
+			this.poblacion = new Poblacion();
+			this.localizacion = new Localizacion();
+			this.listaContactos = new ListaContactos();
+		}
+	}
+
 	@SuppressWarnings("resource")
 	public void loadDataFile(String fichero, boolean reset, FileReader fr ) {
 		try {
@@ -106,11 +114,7 @@ public class ContactosCovid {
 			File archivo = new File(fichero);
 			fr = new FileReader(archivo);
 			BufferedReader br = new BufferedReader(fr);
-			if (reset) {
-				this.poblacion = new Poblacion();
-				this.localizacion = new Localizacion();
-				this.listaContactos = new ListaContactos();
-			} 
+			resetDatos(reset);
 			/**
 			 * Lectura del fichero	línea a línea. Compruebo que cada línea 
 			 * tiene el tipo PERSONA o LOCALIZACION y cargo la línea de datos en la 
