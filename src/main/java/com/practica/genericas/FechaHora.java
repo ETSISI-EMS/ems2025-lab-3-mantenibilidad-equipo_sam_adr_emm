@@ -1,9 +1,9 @@
 package com.practica.genericas;
 
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
-import java.util.Locale;
+
 
 public class FechaHora implements Comparable<FechaHora>{
 	public class Fecha {
@@ -20,30 +20,20 @@ public class FechaHora implements Comparable<FechaHora>{
 			return dia;
 		}
 
-		public void setDia(int dia) {
-			this.dia = dia;
-		}
 
 		public int getMes() {
 			return mes;
 		}
 
-		public void setMes(int mes) {
-			this.mes = mes;
-		}
 
 		public int getAnio() {
 			return anio;
 		}
 
-		public void setAnio(int anio) {
-			this.anio = anio;
-		}
 
 		@Override
 		public String toString() {
-			String cadena = String.format("%2d/%02d/%4d",dia,mes,anio);
-			return cadena;
+			return String.format("%2d/%02d/%4d",dia,mes,anio);
 		}
 		
 		
@@ -87,7 +77,6 @@ public class FechaHora implements Comparable<FechaHora>{
 	Hora hora;
 	
 	public FechaHora(Fecha fecha, Hora hora) {
-		super();
 		this.fecha = fecha;
 		this.hora = hora;
 	}
@@ -101,17 +90,11 @@ public class FechaHora implements Comparable<FechaHora>{
 		return fecha;
 	}
 
-	public void setFecha(Fecha fecha) {
-		this.fecha = fecha;
-	}
 
 	public Hora getHora() {
 		return hora;
 	}
 
-	public void setHora(Hora hora) {
-		this.hora = hora;
-	}
 
 	@Override
 	public int hashCode() {

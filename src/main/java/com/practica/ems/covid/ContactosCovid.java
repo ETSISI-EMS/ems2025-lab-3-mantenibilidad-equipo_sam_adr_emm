@@ -94,30 +94,35 @@ public class ContactosCovid {
 		FileReader fr = null;
 		BufferedReader br = null;
 		String datas[] = null, data = null;
-		loadDataFile(fichero, reset, archivo, fr, br, datas, data);
+		loadDataFile(fichero, reset, fr);
 		
 	}
 
+	private void resetDatos(boolean reset){
+		if (reset) {
+			this.poblacion = new Poblacion();
+			this.localizacion = new Localizacion();
+			this.listaContactos = new ListaContactos();
+		}
+	}
+
 	@SuppressWarnings("resource")
-	public void loadDataFile(String fichero, boolean reset, File archivo, FileReader fr, BufferedReader br, String datas[], String data ) {
+	public void loadDataFile(String fichero, boolean reset, FileReader fr ) {
 		try {
 			// Apertura del fichero y creacion de BufferedReader para poder
 			// hacer una lectura comoda (disponer del metodo readLine()).
-			archivo = new File(fichero);
+			File archivo = new File(fichero);
 			fr = new FileReader(archivo);
-			br = new BufferedReader(fr);
-			if (reset) {
-				this.poblacion = new Poblacion();
-				this.localizacion = new Localizacion();
-				this.listaContactos = new ListaContactos();
-			} 
+			BufferedReader br = new BufferedReader(fr);
+			resetDatos(reset);
 			/**
 			 * Lectura del fichero	línea a línea. Compruebo que cada línea 
 			 * tiene el tipo PERSONA o LOCALIZACION y cargo la línea de datos en la 
 			 * lista correspondiente. Sino viene ninguno de esos tipos lanzo una excepción
 			 */
+			String data;
 			while ((data = br.readLine()) != null) {
-				datas = dividirEntrada(data.trim());
+				String[] datas = dividirEntrada(data.trim());
 				for (String linea : datas) {
 					String datos[] = this.dividirLineaData(linea);
 					if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
