@@ -90,12 +90,8 @@ public class ContactosCovid {
 	}
 
 	public void loadDataFile(String fichero, boolean reset) {
-		File archivo = null;
 		FileReader fr = null;
-		BufferedReader br = null;
-		String datas[] = null, data = null;
 		loadDataFile(fichero, reset, fr);
-		
 	}
 
 	private void resetDatos(boolean reset){
