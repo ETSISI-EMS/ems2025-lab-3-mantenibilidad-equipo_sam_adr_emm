@@ -135,19 +135,7 @@ public class ContactosCovid {
 			 */
 			String data;
 			while ((data = br.readLine()) != null) {
-				String[] datas = dividirEntrada(data.trim());
-				for (String linea : datas) {
-					String datos[] = this.dividirLineaData(linea);
-					if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
-						throw new EmsInvalidTypeException();
-					}
-					if (datos[0].equals("PERSONA")) {
-						checkDatosPersona(datos);
-					}
-					if (datos[0].equals("LOCALIZACION")) {
-						checkDatosLocalizacion(datos);
-					}
-				}
+				comprobarDatos(data);
 
 			}
 
@@ -166,6 +154,23 @@ public class ContactosCovid {
 			}
 		}
 	}
+
+	private void comprobarDatos(String data) throws EmsInvalidTypeException, EmsInvalidNumberOfDataException, EmsDuplicatePersonException, EmsDuplicateLocationException {
+		String[] datas = dividirEntrada(data.trim());
+		for (String linea : datas) {
+			String datos[] = this.dividirLineaData(linea);
+			if (!datos[0].equals("PERSONA") && !datos[0].equals("LOCALIZACION")) {
+				throw new EmsInvalidTypeException();
+			}
+			if (datos[0].equals("PERSONA")) {
+				checkDatosPersona(datos);
+			}
+			if (datos[0].equals("LOCALIZACION")) {
+				checkDatosLocalizacion(datos);
+			}
+		}
+	}
+
 	public int findPersona(String documento) throws EmsPersonNotFoundException {
 		int pos;
 		try {
