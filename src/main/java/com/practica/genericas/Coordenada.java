@@ -2,7 +2,8 @@ package com.practica.genericas;
 
 
 public class Coordenada {
-	private float latitud, longitud;
+	private float latitud;
+	private float longitud;
 
 	
 	public Coordenada() {
@@ -20,17 +21,10 @@ public class Coordenada {
 		return latitud;
 	}
 
-	public void setLatitud(float latitud) {
-		this.latitud = latitud;
-	}
-
 	public float getLongitud() {
 		return longitud;
 	}
 
-	public void setLongitud(float longitud) {
-		this.longitud = longitud;
-	}
 
 	@Override
 	public int hashCode() {
@@ -50,11 +44,12 @@ public class Coordenada {
 		if (getClass() != obj.getClass())
 			return false;
 		Coordenada other = (Coordenada) obj;
-		if (Float.floatToIntBits(latitud) != Float.floatToIntBits(other.latitud))
-			return false;
-		if (Float.floatToIntBits(longitud) != Float.floatToIntBits(other.longitud))
-			return false;
-		return true;
+        return comprobarEquals(latitud, other.latitud) && comprobarEquals(longitud, other.longitud);
+    }
+
+	private boolean comprobarEquals(float a, float b){
+		return (Float.floatToIntBits(a) == Float.floatToIntBits(b));
 	}
+
 	
 }
