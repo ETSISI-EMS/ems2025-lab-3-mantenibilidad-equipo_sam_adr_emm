@@ -145,7 +145,7 @@ public class ContactosCovid {
 						checkDatosPersona(datos);
 					}
 					if (datos[0].equals("LOCALIZACION")) {
-
+						checkDatosLocalizacion(datos);
 					}
 				}
 
